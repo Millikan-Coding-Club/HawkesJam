@@ -30,10 +30,4 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(interval);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
