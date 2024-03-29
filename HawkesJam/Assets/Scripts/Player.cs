@@ -29,4 +29,13 @@ public class Player : MonoBehaviour
         Vector2 aimDirection = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - rb.position;
         rb.rotation = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "DNA")
+        {
+            Destroy(collision.gameObject);
+            Debug.Log("DNA collected");
+        }
+    }
 }

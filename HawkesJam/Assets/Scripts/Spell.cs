@@ -8,7 +8,7 @@ public class Spell : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            Destroy(collision.gameObject);
+            collision.GetComponent<Enemy>().health -= 20;
             Destroy(gameObject);
         }
     }

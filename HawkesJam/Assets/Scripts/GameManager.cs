@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnEnemy(spawnDistance, 1, true, 5f));
+        StartCoroutine(SpawnEnemy(spawnDistance, 1, true, 2f));
     }
 
     private IEnumerator SpawnEnemy(float distFromCenter, int amount, bool repeat, float interval)
