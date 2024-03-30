@@ -11,10 +11,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private int DNA_amount;
     [SerializeField] private float DNA_maxSpeed;
+    public int playerDamage = 20;
     public int health = 100;
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player").GetComponent<Transform>();
     }
@@ -33,6 +35,14 @@ public class Enemy : MonoBehaviour
                 DNA.GetComponent<Rigidbody2D>().AddForce(direction * force);
             }
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Player")
+        {
+            collision.GetComponent<Player>().TakeDamage(playerDamage);
         }
     }
 

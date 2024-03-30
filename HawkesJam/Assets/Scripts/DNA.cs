@@ -12,6 +12,7 @@ public class DNA : MonoBehaviour
 
     private void Start()
     {
+        GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         player = GameObject.Find("Player").GetComponent<Transform>();
     }
 
