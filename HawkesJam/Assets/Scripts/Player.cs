@@ -20,7 +20,9 @@ public class Player : MonoBehaviour
     private float DNA_count = 0;
     [SerializeField] private int maxHealth = 100;
     public int health;
-    
+    [SerializeField] private float spellCooldown;
+    private bool letPlayerShoot = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +32,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && letPlayerShoot)
         {
             GameObject spell = Instantiate(spellPrefab, transform.position, transform.rotation);
             spell.GetComponent<Rigidbody2D>().AddForce(transform.up * spellSpeed, ForceMode2D.Impulse);
+            StartCoroutine(StartCooldown());
         }
+    }
+
+    private IEnumerator StartCooldown()
+    {
+        letPlayerShoot = false;
+        yield return new WaitForSeconds(spellCooldown);
+        letPlayerShoot = true;
     }
 
     void FixedUpdate()

@@ -301,6 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 410651070}
   - component: {fileID: 410651071}
+  - component: {fileID: 410651072}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -375,6 +376,79 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!68 &410651072
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410651069}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.0012323959, y: 0.49507046}
+  - {x: -0.11288535, y: 0.483396}
+  - {x: -0.20077191, y: 0.4537704}
+  - {x: -0.26681012, y: 0.4159741}
+  - {x: -0.29615298, y: 0.3960849}
+  - {x: -0.3669599, y: 0.3335373}
+  - {x: -0.41893998, y: 0.26114684}
+  - {x: -0.46627212, y: 0.1663065}
+  - {x: -0.4904178, y: 0.053385593}
+  - {x: -0.49205047, y: -0.039211124}
+  - {x: -0.4814065, y: -0.12012362}
+  - {x: -0.45916972, y: -0.1792507}
+  - {x: -0.43189687, y: -0.24525334}
+  - {x: -0.38198507, y: -0.3179036}
+  - {x: -0.3079614, y: -0.38693663}
+  - {x: -0.24398907, y: -0.43384993}
+  - {x: -0.15156116, y: -0.47048286}
+  - {x: -0.079611346, y: -0.49101967}
+  - {x: -0.0017605224, y: -0.4947184}
+  - {x: 0.101732954, y: -0.48322827}
+  - {x: 0.16727379, y: -0.46512505}
+  - {x: 0.2655801, y: -0.4177901}
+  - {x: 0.3509602, y: -0.3479094}
+  - {x: 0.412453, y: -0.2701848}
+  - {x: 0.47410762, y: -0.14932378}
+  - {x: 0.4947184, y: -0.0008802617}
+  - {x: 0.49392152, y: 0.07632511}
+  - {x: 0.449377, y: 0.20735717}
+  - {x: 0.39157522, y: 0.3030863}
+  - {x: 0.3562265, y: 0.34421015}
+  - {x: 0.2964369, y: 0.39725617}
+  - {x: 0.21267559, y: 0.44691047}
+  - {x: 0.10754261, y: 0.48222458}
+  - {x: 0.00070306193, y: 0.4934873}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +768,7 @@ MonoBehaviour:
   spellSpeed: 8
   maxHealth: 100
   health: 100
+  spellCooldown: 0.3
 --- !u!82 &548402214
 AudioSource:
   m_ObjectHideFlags: 0
