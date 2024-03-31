@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,24 +12,24 @@ public class Player : MonoBehaviour
     [SerializeField] TMP_Text DNA_countText;
     [SerializeField] AudioSource plopSound;
     [SerializeField] AudioSource damageSound;
+    [SerializeField] GameObject healthBar;
 
+    private float healthBarWidth = 500;
     [SerializeField] private float speed;
     [SerializeField] private float spellSpeed;
     private float DNA_count = 0;
-    public int health = 100;
+    [SerializeField] private int maxHealth = 100;
+    public int health;
     
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        if (health <= 0)
-        {
-            Debug.Log("game over");
-        }
         if (Input.GetMouseButtonDown(0))
         {
             GameObject spell = Instantiate(spellPrefab, transform.position, transform.rotation);
@@ -45,7 +47,13 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        healthBarWidth -= damage * (500f / maxHealth);
+        healthBar.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, healthBarWidth);
         damageSound.Play();
+        if (health <= 0)
+        {
+            Debug.Log("game over");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

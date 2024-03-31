@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ShootingEnemy : MonoBehaviour
 {
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float projectileSpeed;
+    [SerializeField] private float projectileInterval;
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("ShootProjectile", projectileInterval, projectileInterval);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ShootProjectile()
     {
-        
+        GameObject spell = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        spell.GetComponent<Rigidbody2D>().AddForce(transform.up * projectileSpeed, ForceMode2D.Impulse);
     }
 }

@@ -26,19 +26,19 @@ public class GameManager : MonoBehaviour
                 switch (randomChance)
                 {
                     // Default
-                    case <= 35:
+                    case <= 40:
                         SpawnEnemy(enemies[0], enemySpawnDistance);
                         break;
                     // Exploding
-                    case <= 45:
+                    case <= 55:
                         SpawnEnemy(enemies[1], enemySpawnDistance);
                         break;
                     // Virus
-                    case <= 60:
+                    case <= 65:
                         SpawnEnemy(enemies[2], enemySpawnDistance);
                         break;
                     // Shooting
-                    case <= 80:
+                    case <= 85:
                         SpawnEnemy(enemies[3], enemySpawnDistance);
                         break;
                     // Splitting
