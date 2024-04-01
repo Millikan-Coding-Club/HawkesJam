@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField] GameObject spellPrefab;
+    [SerializeField] List<GameObject> spells = new List<GameObject>();
     [SerializeField] TMP_Text DNA_countText;
     [SerializeField] AudioSource plopSound;
     [SerializeField] AudioSource damageSound;
@@ -20,22 +20,35 @@ public class Player : MonoBehaviour
     private float DNA_count = 0;
     [SerializeField] private int maxHealth = 100;
     public int health;
-    [SerializeField] private float spellCooldown;
     private bool letPlayerShoot = true;
+    private GameObject selectedSpell;
 
     // Start is called before the first frame update
     void Start()
     {
+        selectedSpell = spells[0];
         health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            selectedSpell = spells[0];
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            selectedSpell = spells[1];
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            selectedSpell = spells[2];
+        }
+
         if (Input.GetMouseButton(0) && letPlayerShoot)
         {
-            GameObject spell = Instantiate(spellPrefab, transform.position, transform.rotation);
-            spell.GetComponent<Rigidbody2D>().AddForce(transform.up * spellSpeed, ForceMode2D.Impulse);
+            GameObject spell = Instantiate(selectedSpell, transform.position, transform.rotation);
             StartCoroutine(StartCooldown());
         }
     }
@@ -43,13 +56,13 @@ public class Player : MonoBehaviour
     private IEnumerator StartCooldown()
     {
         letPlayerShoot = false;
-        yield return new WaitForSeconds(spellCooldown);
+        yield return new WaitForSeconds(selectedSpell.GetComponent<Spell>().spellCooldown);
         letPlayerShoot = true;
     }
 
     void FixedUpdate()
     {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * Time.deltaTime * speed;
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * Time.deltaTime * speed;
         Vector2 aimDirection = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - rb.position;
         rb.rotation = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
     }

@@ -6,13 +6,15 @@ using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int enemyCount;
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
     [SerializeField] private float enemySpawnDistance;
+    [SerializeField] private float enemyInitialInterval;
+    [SerializeField] private float enemyIntervalMult;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnEnemyLoop(1, true, 2f));
+        StartCoroutine(SpawnEnemyLoop(1, true, enemyInitialInterval));
     }
 
     private IEnumerator SpawnEnemyLoop(int amount, bool repeat, float interval)
@@ -51,6 +53,10 @@ public class GameManager : MonoBehaviour
             if (!repeat)
             {
                 break;
+            }
+            if (interval > 1)
+            {
+                interval *= enemyIntervalMult;
             }
             yield return new WaitForSeconds(interval);
         }

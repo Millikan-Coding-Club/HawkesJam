@@ -759,7 +759,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4bab2c60406bb4d9ce3d172c536a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellPrefab: {fileID: 7350745004430255332, guid: a30555eb2db6bfd42b4626d8479dfeac, type: 3}
+  spells:
+  - {fileID: 7350745004430255332, guid: a30555eb2db6bfd42b4626d8479dfeac, type: 3}
+  - {fileID: 5839882972667626463, guid: cfeb0c8260eb1234e8ae2701952ca86d, type: 3}
+  - {fileID: 5839882972667626463, guid: ad1de3de315d2454685a637a5964e6bc, type: 3}
   DNA_countText: {fileID: 752890151}
   plopSound: {fileID: 548402214}
   damageSound: {fileID: 548402215}
@@ -768,7 +771,7 @@ MonoBehaviour:
   spellSpeed: 8
   maxHealth: 100
   health: 100
-  spellCooldown: 0.3
+  spellCooldown: 0.25
 --- !u!82 &548402214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1589,7 +1592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bd281c54e1f01458095064ea24cd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 10
   enemies:
   - {fileID: 7096391773157168346, guid: 515a89a7c15b203439b2d8f02b8db884, type: 3}
   - {fileID: 3752966608094302870, guid: 72f58bcd7110bd7448fa1de96209286d, type: 3}
@@ -1597,6 +1599,8 @@ MonoBehaviour:
   - {fileID: 8613247052550388547, guid: 1b695998dbc69974685bcf17879b39db, type: 3}
   - {fileID: 2092077603002806719, guid: c4061b0f89f51a545bd34a8be0e92fa4, type: 3}
   enemySpawnDistance: 5
+  enemyInitialInterval: 4
+  enemyIntervalMult: 0.95
 --- !u!4 &1815701756
 Transform:
   m_ObjectHideFlags: 0

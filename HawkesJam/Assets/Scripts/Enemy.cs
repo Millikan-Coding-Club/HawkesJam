@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public int playerDamage = 20;
     [SerializeField] private int maxHealth = 100;
     public int health;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,15 +46,30 @@ public class Enemy : MonoBehaviour
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    GameObject clone = Instantiate(splittingEnemyPrefab, transform.position + transform.right * (i == 1 ? -0.3f : 0.3f), transform.rotation);
+                    GameObject clone = Instantiate(splittingEnemyPrefab, transform.position + transform.right * (i == 1 ? -0.2f : 0.2f), transform.rotation);
                     Enemy cloneScript = clone.GetComponent<Enemy>();
                     cloneScript.maxHealth -= 20;
                     cloneScript.health = cloneScript.maxHealth;
+                    cloneScript.playerDamage -= 5;
                     cloneScript.DNA_amount -= 1;
                     clone.transform.localScale = transform.localScale * 0.8f;
                 }
             }
             Destroy(gameObject);
+        }
+    }
+
+    public void InflictPoison(float interval, int damage)
+    {
+        StartCoroutine(Poison(interval, damage));
+    }
+
+    private IEnumerator Poison(float interval, int damage)
+    {
+        while (health > 0)
+        {
+            TakeDamage(damage);
+            yield return new WaitForSeconds(interval);
         }
     }
 
