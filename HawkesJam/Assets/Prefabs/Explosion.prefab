@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionDamage: 60
   explosionSpeed: 15
-  maxSize: 5
+  maxSize: 6
 --- !u!58 &-4650761370542657325
 CircleCollider2D:
   m_ObjectHideFlags: 0

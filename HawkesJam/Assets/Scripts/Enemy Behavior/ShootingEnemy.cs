@@ -16,6 +16,6 @@ public class ShootingEnemy : MonoBehaviour
     private void ShootProjectile()
     {
         GameObject spell = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        spell.GetComponent<Rigidbody2D>().AddForce(transform.up * projectileSpeed, ForceMode2D.Impulse);
+        spell.GetComponent<Rigidbody2D>().AddForce(transform.right * -1 * projectileSpeed, ForceMode2D.Impulse);
     }
 }

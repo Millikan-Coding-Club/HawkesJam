@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb;
     [SerializeField] private GameObject splittingEnemyPrefab;
+    [SerializeField] private GameObject virusDNA;
+    [SerializeField] private GameObject explodingDNA;
+    [SerializeField] private GameObject splittingDNA;
+    private GameObject selectedDNA;
 
     [SerializeField] private float speed;
     [SerializeField] private int DNA_amount;
@@ -36,7 +40,23 @@ public class Enemy : MonoBehaviour
         {
             for (int i = 0; i < DNA_amount; i++) // Spawn DNA
             {
-                GameObject DNA = Instantiate(DNAPrefab, transform.position, Quaternion.identity);
+                selectedDNA = DNAPrefab;
+                if (Random.Range(0, 2) == 0)
+                {
+                    if (name.Contains("Exploding"))
+                    {
+                        selectedDNA = explodingDNA;
+                    }
+                    if (name.Contains("Splitting"))
+                    {
+                        selectedDNA = splittingDNA;
+                    }
+                    if (name.Contains("Virus"))
+                    {
+                        selectedDNA = virusDNA;
+                    }
+                }
+                GameObject DNA = Instantiate(selectedDNA, transform.position, Quaternion.identity);
                 float angle = 360 / DNA_amount * i;
                 float force = (Random.value * DNA_maxSpeed - 25) + 25;
                 Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
@@ -83,7 +103,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float rotation = Mathf.LerpAngle(transform.rotation.eulerAngles.z, -Mathf.Atan2(player.position.x - transform.position.x, player.position.y - transform.position.y) * Mathf.Rad2Deg, 0.05f);
+        float rotation = Mathf.LerpAngle(transform.rotation.eulerAngles.z, -Mathf.Atan2(player.position.x - transform.position.x, player.position.y - transform.position.y) * Mathf.Rad2Deg - 90f, 0.05f);
         rb.rotation = rotation;
         rb.velocity = (player.position - transform.position).normalized * speed * Time.deltaTime;
     }
