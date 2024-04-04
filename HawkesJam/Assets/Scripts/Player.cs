@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
+    [SerializeField] GameObject gameOverCanvas;
+    [SerializeField] TMP_Text gameOverText;
     [SerializeField] List<GameObject> spells = new List<GameObject>();
     [SerializeField] TMP_Text DNA_countText;
     [SerializeField] TMP_Text VirusDNA_countText;
@@ -19,9 +21,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject SplittingOutline;
     [SerializeField] AudioSource plopSound;
     [SerializeField] AudioSource damageSound;
-    [SerializeField] GameObject healthBar;
+    [SerializeField] Slider healthBarSlider;
 
-    private float healthBarWidth = 500;
     [SerializeField] private float speed;
     [SerializeField] private float spellSpeed;
     private float DNA_count = 0;
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour
     private void Shoot()
     {
         Vector2 aimDirection = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - rb.position;
-        Instantiate(selectedSpell, transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f));
+        Instantiate(selectedSpell, transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 180f));
         if (selectedSpell == spells[3])
         {
             float spellSpread = 15f;
@@ -146,12 +147,13 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        healthBarWidth -= damage * (500f / maxHealth);
-        healthBar.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, healthBarWidth);
+        healthBarSlider.value = health;
         damageSound.Play();
         if (health <= 0)
         {
-            Debug.Log("game over");
+            Time.timeScale = 0f;
+            gameOverCanvas.SetActive(true);
+            gameOverText.text = "Game Over!\nScore: " + DNA_count;
         }
     }
 

@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
                         selectedDNA = virusDNA;
                     }
                 }
-                GameObject DNA = Instantiate(selectedDNA, transform.position, Quaternion.identity);
+                GameObject DNA = Instantiate(selectedDNA, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
                 float angle = 360 / DNA_amount * i;
                 float force = (Random.value * DNA_maxSpeed - 25) + 25;
                 Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -66,5 +67,11 @@ public class GameManager : MonoBehaviour
     {
         float angle = Random.value * 360;
         Instantiate(enemy, new Vector3(dist * Mathf.Cos(angle * Mathf.Deg2Rad), dist * Mathf.Sin(angle * Mathf.Deg2Rad)), Quaternion.identity);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Scene");
+        Time.timeScale = 1.0f;
     }
 }

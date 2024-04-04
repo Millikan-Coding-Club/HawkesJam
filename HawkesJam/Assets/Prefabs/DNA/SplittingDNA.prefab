@@ -50,12 +50,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3722047504088912215, guid: 1f334926f1756f0468abc75911174a2c, type: 3}
       propertyPath: m_Name
-      value: VirusDNA 1
+      value: SplittingDNA
       objectReference: {fileID: 0}
     - target: {fileID: 5444860361580688490, guid: 1f334926f1756f0468abc75911174a2c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3d4fe2bdd5a9e644a968a390daf96817, type: 3}
+      objectReference: {fileID: 21300000, guid: bac2b7a5f5632ed488800bb2f25ca46a, type: 3}
     - target: {fileID: 5444860361580688490, guid: 1f334926f1756f0468abc75911174a2c, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -66,6 +66,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5444860361580688490, guid: 1f334926f1756f0468abc75911174a2c, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444860361580688490, guid: 1f334926f1756f0468abc75911174a2c, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
